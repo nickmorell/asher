@@ -1,8 +1,7 @@
-const os = require('os');
 const Discord = require('discord.js');
 const fs = require('fs');
 const {prefix} = require('./config.json');
-const token = os.environ["ACCESS_TOKEN"];
+const token = process.env.TOKEN;
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
