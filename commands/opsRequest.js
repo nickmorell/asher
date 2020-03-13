@@ -9,7 +9,7 @@ module.exports = {
             .setColor('#0099ff')
             .settitle('New Request')
             .setAuthor(message.author)
-            .setDescription(args[0])
+            .setDescription(args[0]);
 
 
         message.channel.send(emded);
