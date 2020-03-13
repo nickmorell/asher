@@ -17,6 +17,8 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
+    console.log('Hitting messages');
+    console.log(`Prefix ${prefix}`);
     if(!message.content.startsWith(prefix) || message.author.bot) return; // Return if bot or does not use prefix
 
     const args = message.content.slice(prefix.length).split(/ +/);
