@@ -24,7 +24,7 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
 
     try {
-        client.commands.get(command).execute(message, args);
+        client.commands.get(command).execute(client, message, args);
     } catch(error) {
         console.error(error);
         message.reply("There was an error trying to execute the command!");
