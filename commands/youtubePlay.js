@@ -12,11 +12,10 @@ module.exports = {
 			return message.reply('please join a voice channel first!');
 		}
         
-		voice.join().then(connection => {
-			const stream = ytdl('https://www.youtube.com/watch?v=D57Y1PruTlw', { filter: 'audioonly', quality: 'highestaudio' });
-			const dispatcher = connection.play(stream);
-
-			// dispatcher.on('discnnect', () => voice.disconnect());
-		}); 
+        try{
+            voice.connection.play(ytdl('https://www.youtube.com/watch?v=D57Y1PruTlw', { filter: 'audioonly', quality: 'highestaudio' })); 
+        } catch(error) {
+            return message.reply('There was an issue playing the provided link.');
+        }
     }
 };
