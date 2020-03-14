@@ -10,11 +10,12 @@ module.exports = {
 
 		if (!voice) {
 			return message.reply('please join a voice channel first!');
-		}
+        }
         
         voice.channel.join()
             .then(connection => {
-                connection.play(ytdl('https://www.youtube.com/watch?v=D57Y1PruTlw', { filter: 'audioonly', quality: 'highestaudio' }));
+
+                connection.play(ytdl(args[0], { filter: 'audioonly', quality: 'highestaudio' }));
             })
             .catch(error => {
                 console.warn(error);
