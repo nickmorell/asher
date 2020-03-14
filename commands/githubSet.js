@@ -2,7 +2,7 @@ var github = require('octonode');
 
 
 module.exports = {
-    name: 'githubSet',
+    name: 'githubset',
     description: 'Set github username for discord user.',
     execute(client, message, args) {
 
