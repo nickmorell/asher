@@ -1,20 +1,22 @@
+const clientUtils = require('./util/clientUtil');
+
 const Discord = require('discord.js');
-const fs = require('fs');
 const {prefix} = require('./config.json');
 const token = process.env.TOKEN;
 
 const client = new Discord.Client();
-client.commands = new Discord.Collection();
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
-for(const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
-}
+clientUtils.setupCommands(client);
 
 client.once('ready', () => {
     console.log('Asher is ready and running!');
+});
+
+client.once('reconnecting', () => {
+    console.log('Asher is Reconnecting!');
+});
+client.once('disconnect', () => {
+    console.log('Asher has Disconnected!');
 });
 
 client.on('message', message => {
@@ -31,5 +33,7 @@ client.on('message', message => {
     }
 
 });
+
+process.on('unhandledRejection', error => console.error('Uncaught Promise Rejection', error));
 
 client.login(token);
