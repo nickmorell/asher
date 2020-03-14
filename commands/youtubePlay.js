@@ -6,17 +6,17 @@ module.exports = {
     execute(client, message, args) {
         if (message.channel.type !== 'text') return;
 
-		const { voiceChannel } = message.member;
+		const { voice } = message.member;
 
-		if (!voiceChannel) {
+		if (!voice) {
 			return message.reply('please join a voice channel first!');
 		}
+        
+		voice.join().then(connection => {
+			const stream = ytdl('https://www.youtube.com/watch?v=D57Y1PruTlw', { filter: 'audioonly', quality: 'highestaudio' });
+			const dispatcher = connection.play(stream);
 
-		voiceChannel.join().then(connection => {
-			const stream = ytdl('https://www.youtube.com/watch?v=D57Y1PruTlw', { filter: 'audioonly' });
-			const dispatcher = connection.playStream(stream);
-
-			dispatcher.on('end', () => voiceChannel.leave());
+			// dispatcher.on('discnnect', () => voice.disconnect());
 		}); 
     }
 };
